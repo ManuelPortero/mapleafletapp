@@ -16,9 +16,6 @@ export default class App extends Component {
     super();
   
   this.state = {
-    visibleMap: false,       
-    visibleWeather: false,       
-    visibleGuide: false,
     lat: '',
     lng: '',
     zoom: 13
@@ -35,32 +32,6 @@ handleChange(e) {
   });
 }
 
-MapChange() {
-          
-  this.setState({
-    visibleMap: true,       
-    visibleWeather: false,       
-    visibleGuide: false
-  });
-}
-
-WeatherChange() {
-          
-  this.setState({
-    visibleMap: false,       
-    visibleWeather: true,       
-    visibleGuide: false
-  });
-}
-
-GuideChange() {
-          
-  this.setState({
-    visibleMap: false,       
-    visibleWeather: false,       
-    visibleGuide: true
-  });
-}
 
   render () {
     var position = [this.state.lat, this.state.lng];
@@ -72,13 +43,12 @@ GuideChange() {
     <nav className="nav-extended light-green darken-1">
                 <div className="nav-wrapper">
                   <a href="#" className="brand-logo">
-                    <img width="35%" src="https://www.laguiadeviaje.com/wp-content/uploads/2014/10/GuiaViaje.jpg"  alt="logo"></img>
+                    <img width="27%" src="https://www.viajarlondres.com/images/logo-infoviaje-min.png"  alt="logo"></img>
                   </a>
                   <ul  className="right hide-on-med-and-down">
-                <li className="tab "><a onClick={()=>{this.MapChange()}} href="#"> City Map</a></li>                    
-                <li className="tab "><a onClick={()=>{this.WeatherChange()}} href="#"> Weather</a></li>
-                <li className="tab "><a onClick={()=>{this.GuideChange()}} href="#"> Guide</a></li>
-                    
+                    <li className="tab"><a href="#">Calculator</a></li>
+                    <li className="tab"><a href="#">Calendar</a></li>
+                    <li className="tab"><a href="#">Technical Support</a></li>
                   </ul>
                 </div>      
                             
@@ -97,21 +67,15 @@ GuideChange() {
     </div>
 </div>
 
-{ this.state.visibleMap == true ? 
-
-<Map className="map" center={position} zoom={this.state.zoom}>
+      
+      <Map className="map" center={position} zoom={this.state.zoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position} icon={myIcon}> 
         </Marker>
-</Map>
-
-
-: null }
-
-      
+      </Map>
 </div>    
     );
   }

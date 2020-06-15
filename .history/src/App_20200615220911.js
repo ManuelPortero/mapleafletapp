@@ -35,32 +35,6 @@ handleChange(e) {
   });
 }
 
-MapChange() {
-          
-  this.setState({
-    visibleMap: true,       
-    visibleWeather: false,       
-    visibleGuide: false
-  });
-}
-
-WeatherChange() {
-          
-  this.setState({
-    visibleMap: false,       
-    visibleWeather: true,       
-    visibleGuide: false
-  });
-}
-
-GuideChange() {
-          
-  this.setState({
-    visibleMap: false,       
-    visibleWeather: false,       
-    visibleGuide: true
-  });
-}
 
   render () {
     var position = [this.state.lat, this.state.lng];
@@ -97,21 +71,15 @@ GuideChange() {
     </div>
 </div>
 
-{ this.state.visibleMap == true ? 
-
-<Map className="map" center={position} zoom={this.state.zoom}>
+      
+      <Map className="map" center={position} zoom={this.state.zoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position} icon={myIcon}> 
         </Marker>
-</Map>
-
-
-: null }
-
-      
+      </Map>
 </div>    
     );
   }

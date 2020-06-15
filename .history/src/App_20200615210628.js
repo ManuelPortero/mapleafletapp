@@ -10,110 +10,38 @@ var myIcon = L.icon({
  popupAnchor: [0,-41]
 });
 
-export default class App extends Component {
+class App extends Component {
 
-  constructor(){
-    super();
-  
-  this.state = {
-    visibleMap: false,       
-    visibleWeather: false,       
-    visibleGuide: false,
-    lat: '',
-    lng: '',
-    zoom: 13
-    
-  };
 
-  this.handleChange = this.handleChange.bind(this); 
-}
 
-handleChange(e) {
-  const { name, value } = e.target;
-  this.setState({
-    [name]: value
-  });
-}
 
-MapChange() {
-          
-  this.setState({
-    visibleMap: true,       
-    visibleWeather: false,       
-    visibleGuide: false
-  });
-}
+  state = {
+    lat: 51.505,
+    lng: -0.09,
+    zoom: 13,
 
-WeatherChange() {
-          
-  this.setState({
-    visibleMap: false,       
-    visibleWeather: true,       
-    visibleGuide: false
-  });
-}
+  }
 
-GuideChange() {
-          
-  this.setState({
-    visibleMap: false,       
-    visibleWeather: false,       
-    visibleGuide: true
-  });
-}
 
   render () {
-    var position = [this.state.lat, this.state.lng];
+    const position = [this.state.lat, this.state.lng];
 
   return (
 
 <div>
-  <div>
-    <nav className="nav-extended light-green darken-1">
-                <div className="nav-wrapper">
-                  <a href="#" className="brand-logo">
-                    <img width="35%" src="https://www.laguiadeviaje.com/wp-content/uploads/2014/10/GuiaViaje.jpg"  alt="logo"></img>
-                  </a>
-                  <ul  className="right hide-on-med-and-down">
-                <li className="tab "><a onClick={()=>{this.MapChange()}} href="#"> City Map</a></li>                    
-                <li className="tab "><a onClick={()=>{this.WeatherChange()}} href="#"> Weather</a></li>
-                <li className="tab "><a onClick={()=>{this.GuideChange()}} href="#"> Guide</a></li>
-                    
-                  </ul>
-                </div>      
-                            
-    </nav>
-
-    <div className="nav-extended light-green darken-1">
-    <p className= "pt-2 text-white text-center">Introduce your city</p>  
-    <div className="nav-extended ">
-      <p className="text-white">Latitude</p>
-      <input className= "white" name="lat" onChange={this.handleChange} value={this.state.lat} type="text" placeholder="Latitude" autoFocus/>
-      <p className="pt-2 text-white">Longitude</p>
-      <input className= "white" name="lng" onChange={this.handleChange} value={this.state.lng} type="text" placeholder="Longitude" autoFocus/>
 
 
-    </div>  
-    </div>
-</div>
 
-{ this.state.visibleMap == true ? 
-
-<Map className="map" center={position} zoom={this.state.zoom}>
+      <Map className="map" center={position} zoom={this.state.zoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position} icon={myIcon}> 
         </Marker>
-</Map>
-
-
-: null }
-
-      
+      </Map>
 </div>    
     );
   }
 }
-
+export default App;

@@ -10,110 +10,75 @@ var myIcon = L.icon({
  popupAnchor: [0,-41]
 });
 
-export default class App extends Component {
+class App extends Component {
 
-  constructor(){
-    super();
-  
-  this.state = {
-    visibleMap: false,       
-    visibleWeather: false,       
-    visibleGuide: false,
-    lat: '',
-    lng: '',
-    zoom: 13
-    
-  };
 
-  this.handleChange = this.handleChange.bind(this); 
-}
 
-handleChange(e) {
-  const { name, value } = e.target;
-  this.setState({
-    [name]: value
-  });
-}
 
-MapChange() {
-          
-  this.setState({
-    visibleMap: true,       
-    visibleWeather: false,       
-    visibleGuide: false
-  });
-}
+  state = {
+    lat: 51.505,
+    lng: -0.09,
+    zoom: 13,
 
-WeatherChange() {
-          
-  this.setState({
-    visibleMap: false,       
-    visibleWeather: true,       
-    visibleGuide: false
-  });
-}
+  }
 
-GuideChange() {
-          
-  this.setState({
-    visibleMap: false,       
-    visibleWeather: false,       
-    visibleGuide: true
-  });
-}
 
   render () {
-    var position = [this.state.lat, this.state.lng];
+    const position = [this.state.lat, this.state.lng];
 
   return (
 
 <div>
   <div>
-    <nav className="nav-extended light-green darken-1">
-                <div className="nav-wrapper">
-                  <a href="#" className="brand-logo">
-                    <img width="35%" src="https://www.laguiadeviaje.com/wp-content/uploads/2014/10/GuiaViaje.jpg"  alt="logo"></img>
-                  </a>
-                  <ul  className="right hide-on-med-and-down">
-                <li className="tab "><a onClick={()=>{this.MapChange()}} href="#"> City Map</a></li>                    
-                <li className="tab "><a onClick={()=>{this.WeatherChange()}} href="#"> Weather</a></li>
-                <li className="tab "><a onClick={()=>{this.GuideChange()}} href="#"> Guide</a></li>
-                    
-                  </ul>
-                </div>      
-                            
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div className="nav-extended light-green darken-1">
-    <p className= "pt-2 text-white text-center">Introduce your city</p>  
-    <div className="nav-extended ">
-      <p className="text-white">Latitude</p>
-      <input className= "white" name="lat" onChange={this.handleChange} value={this.state.lat} type="text" placeholder="Latitude" autoFocus/>
-      <p className="pt-2 text-white">Longitude</p>
-      <input className= "white" name="lng" onChange={this.handleChange} value={this.state.lng} type="text" placeholder="Longitude" autoFocus/>
-
-
-    </div>  
-    </div>
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul className="navbar-nav mr-auto">
+      <li className="nav-item active">
+        <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link" href="#">Link</a>
+      </li>
+      <li className="nav-item dropdown">
+        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a className="dropdown-item" href="#">Action</a>
+          <a className="dropdown-item" href="#">Another action</a>
+          <div className="dropdown-divider"></div>
+          <a className="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <li className="nav-item">
+        <a className="nav-link disabled" href="#">Disabled</a>
+      </li>
+    </ul>
+    <form className="form-inline my-2 my-lg-0">
+      <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+    
 </div>
 
-{ this.state.visibleMap == true ? 
-
-<Map className="map" center={position} zoom={this.state.zoom}>
+      
+      <Map className="map" center={position} zoom={this.state.zoom}>
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <Marker position={position} icon={myIcon}> 
         </Marker>
-</Map>
-
-
-: null }
-
-      
+      </Map>
 </div>    
     );
   }
 }
-
+export default App;

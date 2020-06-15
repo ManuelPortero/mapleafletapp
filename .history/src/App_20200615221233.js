@@ -97,7 +97,7 @@ GuideChange() {
     </div>
 </div>
 
-{ this.state.visibleMap == true ? 
+{ this.state.visibleTask == true ? 
 
 <Map className="map" center={position} zoom={this.state.zoom}>
         <TileLayer
@@ -111,6 +111,8 @@ GuideChange() {
 
 : null }
 
+{ this.state.visibleWeather == true ? <Weather/> : null }
+{ this.state.visibleGuide == true ? <Guide/> : null }
       
 </div>    
     );
