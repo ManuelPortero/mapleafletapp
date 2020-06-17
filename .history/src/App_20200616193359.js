@@ -111,7 +111,6 @@ GuideChange() {
 
 : null }
 
-{ this.state.visibleGuide == true ? <Guide/> : null}
       
 </div>    
     );
