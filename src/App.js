@@ -72,7 +72,7 @@ GuideChange() {
                     <img width="35%" src="https://www.laguiadeviaje.com/wp-content/uploads/2014/10/GuiaViaje.jpg"  alt="logo"></img>
                   </a>
                   <ul  className="right hide-on-med-and-down">
-                <li className="tab "><a onClick={()=>{this.MapChange()}} href="#">Weather and Maps</a></li>                    
+                <li className="tab "><a onClick={()=>{this.MapChange()}} href="#">GPS</a></li>                    
                 <li className="tab "><a onClick={()=>{this.GuideChange()}} href="#"> Guide</a></li>
                     
                   </ul>
